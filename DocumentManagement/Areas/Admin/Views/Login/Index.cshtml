@@ -1,0 +1,127 @@
+﻿@using DocumentManagement.Areas.Admin.Models;
+
+@model LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Quản lý văn bản </title>
+
+    <!-- Bootstrap -->
+    <link href="~/Assets/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Assets/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Assets/Admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/Assets/Admin/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    {
+                        <h1>Đăng nhập</h1>
+
+                        if (TempData["Message"] != null)
+                        {
+                            <div id="alert-box" class="alert alert-@TempData["Type"] alert-dismissible " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <strong>@TempData["Message"]</strong>
+                            </div>
+                        }
+
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" }, "error");
+                        <div>
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên đăng nhập" })
+
+                        </div>
+                        <div>
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Mật khẩu" })
+                        </div>
+                        <div>
+                            <button style="text-align:center; background-color:#a4b1bf" class="btn btn-default submit" type="submit">Đăng nhập</button>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="separator">
+                            <p class="change_link">
+                                <a href="#signup" class="to_register"> Quên mật khẩu? </a>
+                            </p>
+
+                            <div class="clearfix"></div>
+                            <br />
+
+                            <div>
+                                <h1><i class="fa fa-edit"></i> Quản Lý Văn Bản</h1>
+                                <p>Trường đại học Công nghệ Giao thông vận tải</p>
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+
+            <div id="register" class="animate form registration_form">
+                <section class="login_content">
+                    @using (Html.BeginForm("ForgetPassword", "Login", FormMethod.Post))
+                    {
+                        <h1>Quên mật khẩu</h1>
+
+                        <div>
+                            <input name="email" type="text" class="form-control" placeholder="Nhập tên đăng nhập hoặc email" required="" />
+                        </div>
+
+                        <div>
+                            <button type="submit" style="text-align:center; background-color:#a4b1bf" class="btn btn-default submit" href="index.html">Tạo mật khẩu mới</button>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="separator">
+                            <p class="change_link">
+                                <a href="#signin" class="to_register"> Chuyển sang trang đăng nhập </a>
+                            </p>
+
+                            <div class="clearfix"></div>
+                            <br />
+
+                            <div>
+                                <h1><i class="fa fa-edit"></i> Quản Lý Văn Bản</h1>
+                                <p>Trường đại học Công nghệ Giao thông vận tải</p>
+                            </div>
+                        </div>
+                    }
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="~/Assets/Admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/Admin/js/custom.js"></script>
+
+</body>
+</html>

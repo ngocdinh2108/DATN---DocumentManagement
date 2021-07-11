@@ -1,0 +1,163 @@
+﻿@model Model.EF.Document
+
+@{
+    ViewBag.Title = "ApprovalDispatchGo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <a href="/Admin/Document/IndexDispatchGoPending">Văn bản đi trình Ban Giám Hiệu ký</a> / Ký duyệt văn bản
+}
+
+@section jsFooter{
+    <script>
+        $('#btnSelectFile').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtFile').val(url);
+            };
+            finder.popup();
+        });
+    </script>
+
+    <script src="~/Assets/Admin/js/controller/openFileController.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Thông tin văn bản</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <br />
+
+                @using (Html.BeginForm("ApprovalDispatchGo", "Document", FormMethod.Post, new { @id = "demo-form2", @class = "form-horizontal form-label-left" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+
+                    <div style="height:38px; display:none" class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            File văn bản <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 input-group">
+                            @Html.TextBoxFor(model => model.AttachedFile, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.AttachedFile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Trích yếu <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Summary, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Ngày đến <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.DateArrived, new { @class = "form-control", @type = "date", @Value = ViewBag.DateArrived, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.DateArrived, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Số kí hiệu <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Number, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Đơn vị ban hành <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.DepartmentIssued, null, new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Sổ văn bản <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.DocumentBookID, null, new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Loại văn bản <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.DocumentTypeID, null, new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+
+                    <div class="x-title">
+                        <h2 style="margin-left:4px">Nhập thông tin bên dưới để duyệt văn bản</h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Ý kiến chỉ đạo (nếu có) <span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextAreaFor(model => model.Opinion, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Opinion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+
+                    <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                            <a href="/Admin/Document/IndexDispatchGoPending" class="btn btn-info">Quay lại</a>
+                            <a data-id="@Model.AttachedFile" href="#" class="btnOpenFile btn btn-secondary">Đọc văn bản</a>
+                            <a href="/Admin/Document/RejectApproval/@Model.ID" class="btn btn-danger">Từ chối duyệt</a>
+                            <button type="submit" class="txtChange btn btn-success">Xác nhận và ký duyệt</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

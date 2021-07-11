@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Charts/highcharts.js"></script>
+<script src="~/Scripts/Charts/exporting.js"></script>
+<script src="~/Scripts/Charts/accessibility.js"></script>
+<script src="~/Scripts/Charts/export-data.js"></script>
+
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            $.getJSON("/Admin/Home/GetData", function (results) {
+
+                $.each(results, function (index, element) {
+                    element.name = element.Key;
+                    element.y = element.Value;
+                });
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Thống kê theo loại văn bản'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    
+
+                    series: [{
+                        name: 'Tỷ lệ',
+                        colorByPoint: true,
+                        data: results
+                    }]
+                });
+
+            });
+        });
+
+    </script>
+}
+
+@section header{
+    <a href="/Admin/Home">Thống kê</a>
+}
+
+<div class="row" style="display: inline-block;">
+    <div class="tile_count">
+        <div class="col-md-3 col-sm-3 tile_stats_count" style="width:250px">
+            <span class="count_top"><i class="glyphicon glyphicon-th-list"></i> Tổng số văn bản đã ban hành</span>
+            <div class="count green">@ViewBag.DispatchIssued</div>
+        </div>
+        <div class="col-md-3 col-sm-3  tile_stats_count" style="width:250px">
+            <span class="count_top"><i class="glyphicon glyphicon-th-list"></i> Tổng số văn bản chờ BGH duyệt</span>
+            <div class="count green">@ViewBag.DispatchPending</div>
+        </div>
+        <div class="col-md-3 col-sm-3  tile_stats_count" style="width:250px">
+            <span class="count_top"><i class="glyphicon glyphicon-th-list"></i> Tổng số văn bản văn thư ban hành</span>
+            <div class="count green">@ViewBag.DispatchWaitingIssued</div>
+        </div>
+        <div class="col-md-3 col-sm-3  tile_stats_count" style="width:250px">
+            <span class="count_top"><i class="glyphicon glyphicon-th-list"></i> Tổng số văn bản bị hủy</span>
+            <div class="count red">@ViewBag.DispatchCanceled</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <figure class="highcharts-figure">
+                <div style="height: 560px" id="container"></div>
+            </figure>
+        </div>
+    </div>
+</div>

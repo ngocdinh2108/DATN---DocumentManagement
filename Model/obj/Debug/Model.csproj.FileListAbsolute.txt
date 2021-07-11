@@ -1,0 +1,16 @@
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\Model.dll.config
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\Model.dll
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\Model.pdb
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\EntityFramework.dll
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\EntityFramework.xml
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\obj\Debug\Model.csproj.CopyComplete
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\obj\Debug\Model.dll
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\obj\Debug\Model.pdb
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\PagedList.dll
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\PagedList.Mvc.dll
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\PagedList.xml
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\bin\Debug\PagedList.Mvc.xml
+D:\CNTT - Đại học công nghệ GTVT\Đồ án tốt nghiệp của tôi\Program\DocumentManagement\Model\obj\Debug\Model.csprojAssemblyReference.cache

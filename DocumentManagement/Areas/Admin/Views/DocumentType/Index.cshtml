@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<Model.EF.DocumentType>
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <a href="/Admin/DocumentType">Quản lý loại văn bản</a>
+}
+
+@section search{
+    @using (Html.BeginForm("Index", "DocumentType", FormMethod.Get))
+    {
+        <div style="margin-top:2%" class="col-md-5 col-sm-5 form-group pull-right top_search">
+            <div class="input-group">
+                <input name="searchString" type="text" class="form-control" placeholder="Tìm kiếm...">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </div>
+    }
+}
+
+@section jsFooter{
+    <script src="~/Assets/Admin/js/controller/documentTypeController.js"></script>
+}
+
+<div class="row" style="display:block">
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <a class="btn btn-primary" href="/Admin/DocumentType/Create">
+                    <i class="glyphicon glyphicon-plus"></i> Thêm mới loại văn bản
+                </a>
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã loại văn bản</th>
+                            <th>Tên loại văn bản</th>
+                            <th style="padding-left:22px">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.ID">
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>
+                                    <div class="fa-hover col-md-2 col-sm-2  ">
+                                        <a href="/Admin/DocumentType/Edit/@item.ID"><i class="glyphicon glyphicon-edit"></i></a>
+                                    </div>
+
+                                    <div class="fa-hover col-md-2 col-sm-2  ">
+                                        <a class="btnRemove" data-id="@item.ID" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="dataTables_paginate paging_simple_numbers">
+                @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
+            </div>
+        </div>
+    </div>
+</div>
+

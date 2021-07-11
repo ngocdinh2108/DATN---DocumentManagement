@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "EditPersonalInfo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model Model.EF.User
+
+@section header{Cập nhật tài khoản của bạn}
+
+@section jsFooter{
+    <script>
+        $('#btnSelectFile').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtFile').val(url);
+            };
+            finder.popup();
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Nhập các trường thông tin <small>Các trường có dấu * là bắt buộc</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <br />
+
+                @using (Html.BeginForm("EditPersonalInfo", "User", FormMethod.Post, new { @id = "demo-form2", @class = "form-horizontal form-label-left" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+
+                    <div class="item form-group" style="display:none">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Tài khoản <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group" style="display:none">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Mật khẩu <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Password, new { @class = "hidden form-control", @type = "password" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group" style="display:none">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Quyền <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.GroupID, null, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Phòng ban <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.DepartmentID, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Ảnh đại diện <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Avatar, new { @class = "form-control", @id = "txtFile" })
+                            <a style="background-color:#91aacc; margin-top:8px" href="#" class="btn btn-default" id="btnSelectFile">Chọn ảnh</a>
+                            @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Họ tên <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group" style="display:none">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Trạng thái <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="checkbox">
+                                <label>
+                                    <div class="icheckbox_flat-green checked" , style="position: relative; top: 6px">
+                                        @Html.CheckBoxFor(model => model.Status, new { @class = "flat" })
+                                    </div>
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </label>
+                            </div>
+
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Điện thoại
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Địa chỉ
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            Email
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+
+                    <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+

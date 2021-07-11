@@ -1,0 +1,107 @@
+﻿
+@model PagedList.IPagedList<Model.Models.UserUserGroupDepartment>
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <a href="/Admin/User">Quản lý tài khoản</a>
+}
+
+@section jsFooter{
+    <script src="~/Assets/Admin/js/controller/userController.js"></script>
+}
+
+@section search{
+    @using (Html.BeginForm("Index", "User", FormMethod.Get))
+    {
+        <div style="margin-top:2%" class="col-md-5 col-sm-5 form-group pull-right top_search">
+            <div class="input-group">
+                <input name="searchString" type="text" class="form-control" placeholder="Tìm kiếm...">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </div>
+    }
+}
+
+<div class="row" style="display:block">
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <a class="btn btn-primary" href="/Admin/User/Create">
+                    <i class="glyphicon glyphicon-plus"></i> Thêm mới tài khoản
+                </a>
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tài khoản</th>
+                            <th>Họ tên</th>
+                            <th>Quyền</th>
+                            <th>Phòng ban</th>
+                            <th>Trạng thái</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.UserName</td>
+                                <td>@item.Name</td>
+                                <td>@item.GroupName</td>
+                                <td>@item.DepartmentName</td>
+                                <td><a href="#" class="btnStatus" data-id="@item.ID">@(item.Status ? "Kích hoạt" : "Khóa")</a></td>
+                                <td>
+                                    <div class="fa-hover col-md-3 col-sm-4  ">
+                                        <a href="/Admin/User/ViewDetail/@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                    </div>
+
+                                    <div class="fa-hover col-md-3 col-sm-4  ">
+                                        <a href="/Admin/User/Edit/@item.ID"><i class="glyphicon glyphicon-edit"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="dataTables_paginate paging_simple_numbers">
+                @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
+            </div>
+        </div>
+    </div>
+</div>
+

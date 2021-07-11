@@ -1,0 +1,140 @@
+﻿@using DocumentManagement.Common
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>Quản lý văn bản</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Assets/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Assets/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Assets/Admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Assets/Admin/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="~/Assets/Admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/Assets/Admin/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Assets/Admin/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            @{Html.RenderAction("LeftMenu", "Home");}
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i style="margin-bottom:10px" class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div>
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h2 style="font-size:14px"><span> <a href="/Admin/Home"><i class="fa fa-edit"></i> Quản Lý Văn Bản </a> / @RenderSection("header", required: false)</span></h2>
+                        </div>
+
+                        <div class="title_right">
+                            <h3>@RenderSection("search", required: false)</h3>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    @if (TempData["Message"] != null)
+                    {
+                        <div id="alert-box" class="alert alert-@TempData["Type"] alert-dismissible " role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>@TempData["Message"]</strong>
+                        </div>
+                    }
+
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Trường đại học Công nghệ Giao thông vận tải
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="~/Assets/Admin/Plugins/ckfinder/ckfinder.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Assets/Admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Assets/Admin/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Assets/Admin/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Assets/Admin/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Assets/Admin/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Assets/Admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Assets/Admin/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/Assets/Admin/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/Assets/Admin/vendors/Flot/jquery.flot.js"></script>
+    <script src="~/Assets/Admin/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Assets/Admin/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/Assets/Admin/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/Assets/Admin/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/Assets/Admin/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/Assets/Admin/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/Assets/Admin/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="~/Assets/Admin/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Assets/Admin/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/Assets/Admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Assets/Admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Assets/Admin/vendors/moment/min/moment.min.js"></script>
+    <script src="~/Assets/Admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Assets/Admin/build/js/custom.min.js"></script>
+    <script src="~/Assets/Admin/js/custom.js"></script>
+
+    @RenderSection("jsFooter", required: false)
+    @RenderSection("customCSS", required: false)
+</body>
+</html>

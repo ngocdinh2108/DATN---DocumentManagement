@@ -1,0 +1,118 @@
+﻿@model Model.Models.UserUserGroupDepartment
+
+@{
+    ViewBag.Title = "ViewDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <a href="/Admin/User">Quản lý tài khoản</a> / Thông tin tài khoản
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-3 col-sm-3  profile_left">
+                    <div class="profile_img">
+                        <div id="crop-avatar">
+                            <!-- Current avatar -->
+                            <img width="240px" height="240px" class="img-responsive avatar-view" src="@Model.Avatar" alt="Avatar" title="Change the avatar">
+                        </div>
+                    </div>
+                    <h3>@Model.Name</h3>
+
+                    <ul class="list-unstyled user_data">
+                        <li>
+                            <i class="glyphicon glyphicon-home"></i> @Model.Address
+                        </li>
+
+                        <li>
+                            <i class="glyphicon glyphicon-tower"></i> Đại học Công nghệ Giao thông vận tải
+                        </li>
+                    </ul>
+
+
+                </div>
+                <div class="col-md-9 col-sm-9 ">
+
+                    <div style="margin:0px" class="x_content">
+                        <br />
+                        <form class="form-horizontal form-label-left">
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Tài khoản</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@Model.UserName" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Quyền</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@Model.GroupName" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Phòng ban</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@Model.DepartmentName" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Ngày tạo</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@Model.CreatedDate" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Trạng thái</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@(Model.Status ? "Hoạt động" : "Khóa")" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Số điện thoại</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@Model.Phone" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 ">Email</label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input value="@Model.Email" type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
